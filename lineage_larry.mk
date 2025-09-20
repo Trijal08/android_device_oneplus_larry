@@ -10,6 +10,7 @@ TARGET_SUPPORTS_OMX_SERVICE := false
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common stuff
+TARGET_DISABLE_EPPE := true
 ROM_VENDOR := lineage
 ifdef ROM_VENDOR
 $(call inherit-product, vendor/$(ROM_VENDOR)/config/common_full_phone.mk)
@@ -35,6 +36,53 @@ PRODUCT_DEVICE := $(DEVICE_CODENAME)
 PRODUCT_BRAND := oneplus
 PRODUCT_MODEL := CPH2467
 PRODUCT_MANUFACTURER := oneplus
+
+# UDFPS support
+TARGET_HAS_UDFPS := true
+EXTRA_UDFPS_ANIMATIONS := true
+
+# Blur
+TARGET_ENABLE_BLUR := true
+
+# Lawnchair (Pixel Launcher by default)
+TARGET_INCLUDE_PIXEL_LAUNCHER := true
+TARGET_DEFAULT_PIXEL_LAUNCHER := true
+TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
+
+# Custom package installer
+TARGET_USE_CUSTOM_PACKAGE_INSTALLER := true
+
+# Live wallpapers
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
+
+# Quick tap
+TARGET_SUPPORTS_QUICK_TAP  := true
+
+# Now Playing
+TARGET_SUPPORTS_NOW_PLAYING := true
+
+# Clear Calling
+TARGET_SUPPORTS_CLEAR_CALLING := true
+
+# Call Recording Support
+TARGET_SUPPORTS_CALL_RECORDING := true
+
+# GMS
+WITH_GMS := true
+
+# ViPER4AndroidFX
+TARGET_INCLUDE_VIPERFX := true
+
+# AxionOS Flags
+# Camera information (multiple sensors supported)
+AXION_CAMERA_REAR_INFO := 108,2
+AXION_CAMERA_FRONT_INFO := 16
+
+# Maintainer name (underscores become spaces in the UI)
+AXION_MAINTAINER := GamerBoy1234294
+
+# Processor name (underscores become spaces)
+AXION_PROCESSOR := Snapdragon_695_5G
 
 # Build props
 PRODUCT_GMS_CLIENTID_BASE := android-oppo

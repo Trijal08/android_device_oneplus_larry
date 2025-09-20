@@ -9,19 +9,34 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 TARGET_SUPPORTS_OMX_SERVICE := false
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common LineageOS stuff
+# Inherit some common stuff
+ROM_VENDOR := lineage
+ifdef ROM_VENDOR
+$(call inherit-product, vendor/$(ROM_VENDOR)/config/common_full_phone.mk)
+else
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+endif
 
 # Inherit from larry device
+DEVICE_CODENAME := larry
+DEVICE_PATH := device/oneplus/larry
+VENDOR_PATH := vendor/oneplus/larry
+COMMON_PATH := device/oneplus/sm6375-common
+COMMON_VENDOR_PATH := vendor/oneplus/sm6375-common
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_larry
-PRODUCT_DEVICE := larry
+ifdef ROM_VENDOR
+PRODUCT_NAME := $(ROM_VENDOR)_$(DEVICE_CODENAME)
+else
+PRODUCT_NAME := lineage_$(DEVICE_CODENAME)
+endif
+PRODUCT_DEVICE := $(DEVICE_CODENAME)
 PRODUCT_BRAND := oneplus
 PRODUCT_MODEL := CPH2467
 PRODUCT_MANUFACTURER := oneplus
 
+# Build props
 PRODUCT_GMS_CLIENTID_BASE := android-oppo
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
